@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sin_generator_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="sin_generator" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="139,497.921545 us"></ZoomStartTime>
+      <ZoomEndTime time="139,614.521546 us"></ZoomEndTime>
+      <Cursor1Time time="26.901000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="276"></NameColumnWidth>
+      <ValueColumnWidth column_width="116"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/sin_generator/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/enable" type="logic">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/wave" type="array">
+      <obj_property name="ElementShortName">wave[11:0]</obj_property>
+      <obj_property name="ObjectShortName">wave[11:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/lut_in" type="array">
+      <obj_property name="ElementShortName">lut_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">lut_in[7:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/lut_out" type="array">
+      <obj_property name="ElementShortName">lut_out[11:0]</obj_property>
+      <obj_property name="ObjectShortName">lut_out[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/curr_state" type="other">
+      <obj_property name="ElementShortName">curr_state</obj_property>
+      <obj_property name="ObjectShortName">curr_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/next_state" type="other">
+      <obj_property name="ElementShortName">next_state</obj_property>
+      <obj_property name="ObjectShortName">next_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/sin_index" type="other">
+      <obj_property name="ElementShortName">sin_index</obj_property>
+      <obj_property name="ObjectShortName">sin_index</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/LUT_SIZE" type="other">
+      <obj_property name="ElementShortName">LUT_SIZE</obj_property>
+      <obj_property name="ObjectShortName">LUT_SIZE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/OUT_BITS" type="other">
+      <obj_property name="ElementShortName">OUT_BITS</obj_property>
+      <obj_property name="ObjectShortName">OUT_BITS</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_generator/IN_BITS" type="other">
+      <obj_property name="ElementShortName">IN_BITS</obj_property>
+      <obj_property name="ObjectShortName">IN_BITS</obj_property>
+   </wvobject>
+</wave_config>
