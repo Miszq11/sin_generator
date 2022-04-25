@@ -44,15 +44,35 @@ architecture Behavioral of def_sim is
     constant IN_BITS :integer := 8;
     signal reset, clock, ena: std_logic := '0';
     signal wave : std_logic_vector(OUT_BITS -1 downto 0);
+	signal clk_out : std_logic;
+	signal pmod_DA_in : std_logic;
+	signal ready_out : std_logic;
+	signal pmod_clk : std_logic;
 begin
    UUT: entity work.sin_generator 
    generic map(LUT_SIZE,OUT_BITS,IN_BITS)
-   port map(clock, reset , ena, wave);
-
+   port map(clock, reset , ena, wave, ready_out);
+   
+   UUT2: entity work.parralel_to_serial
+   generic map(OUT_BITS)
+   port map(
+    clk        => clock, -- system clock
+    clk_pmod   => pmod_clk, -- clock for pmod outputing
+    reset      => reset, -- sync reset
+    data_in    => wave, -- data in vector
+    start      => pmod_clk, -- start transmitting data
+    
+    serial_out => pmod_DA_in, -- pmod serial output
+    clk_out    => clk_out, -- clock out to pmod interface
+    done       => ena  -- signall indicating that data sending is done
+   );
+   
 reset <= '1','0' after 100ps;
-clock <= '1' after 100 ps when clock ='0' else
-         '0' after 100 ps when clock ='1';
-ena <=   '1' after 2300 ps when ena ='0' else
-         '0' after 100 ps when ena ='1';
+clock    <= '1' after 100 ps when clock ='0' else
+            '0' after 100 ps when clock ='1';
+pmod_clk <= '1' after 1200 ps when pmod_clk ='0' else
+            '0' after 1200 ps when pmod_clk ='1';
+--ena <=   '1' after 2300 ps when ena ='0' else
+--         '0' after 100 ps when ena ='1';
 
 end Behavioral;
