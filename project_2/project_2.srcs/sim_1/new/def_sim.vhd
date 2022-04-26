@@ -44,10 +44,10 @@ architecture Behavioral of def_sim is
     constant IN_BITS :integer := 8;
     signal reset, clock, ena: std_logic := '0';
     signal wave : std_logic_vector(OUT_BITS -1 downto 0);
-	signal clk_out : std_logic;
-	signal pmod_DA_in : std_logic;
-	signal ready_out : std_logic;
-	signal pmod_clk : std_logic;
+	signal clk_out : std_logic := '0';
+	signal pmod_DA_in : std_logic :='0';
+	signal ready_out : std_logic :='0';
+	signal pmod_clk : std_logic :='0';
 begin
    UUT: entity work.sin_generator 
    generic map(LUT_SIZE,OUT_BITS,IN_BITS)
@@ -67,7 +67,7 @@ begin
     done       => ena  -- signall indicating that data sending is done
    );
    
-reset <= '1','0' after 100ps;
+reset <= '1','0' after 200ps;
 clock    <= '1' after 100 ps when clock ='0' else
             '0' after 100 ps when clock ='1';
 pmod_clk <= '1' after 1200 ps when pmod_clk ='0' else

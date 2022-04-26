@@ -10,21 +10,27 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="3.135 ns"></ZoomEndTime>
-      <Cursor1Time time="0.078 ns"></Cursor1Time>
+      <ZoomStartTime time="0 ps"></ZoomStartTime>
+      <ZoomEndTime time="678 ps"></ZoomEndTime>
+      <Cursor1Time time="500,000 ps"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="104"></ValueColumnWidth>
+      <ValueColumnWidth column_width="80"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="5" />
+   <WVObjectSize size="17" />
    <wvobject fp_name="/def_sim/wave" type="array">
       <obj_property name="ElementShortName">wave[11:0]</obj_property>
       <obj_property name="ObjectShortName">wave[11:0]</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/wave" type="array">
+      <obj_property name="ElementShortName">wave[11:0]</obj_property>
+      <obj_property name="ObjectShortName">wave[11:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
    </wvobject>
    <wvobject fp_name="/def_sim/clock" type="logic">
       <obj_property name="ElementShortName">clock</obj_property>
@@ -41,5 +47,50 @@
    <wvobject fp_name="/def_sim/UUT/sin_index" type="other">
       <obj_property name="ElementShortName">sin_index</obj_property>
       <obj_property name="ObjectShortName">sin_index</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/data_in" type="array">
+      <obj_property name="ElementShortName">data_in[11:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/data_shift" type="array">
+      <obj_property name="ElementShortName">data_shift[11:0]</obj_property>
+      <obj_property name="ObjectShortName">data_shift[11:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/clk_pmod" type="logic">
+      <obj_property name="ElementShortName">clk_pmod</obj_property>
+      <obj_property name="ObjectShortName">clk_pmod</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/curr_state" type="other">
+      <obj_property name="ElementShortName">curr_state</obj_property>
+      <obj_property name="ObjectShortName">curr_state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/proceed_shift" type="logic">
+      <obj_property name="ElementShortName">proceed_shift</obj_property>
+      <obj_property name="ObjectShortName">proceed_shift</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/data_load" type="logic">
+      <obj_property name="ElementShortName">data_load</obj_property>
+      <obj_property name="ObjectShortName">data_load</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/done" type="logic">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/data_counter" type="other">
+      <obj_property name="ElementShortName">data_counter</obj_property>
+      <obj_property name="ObjectShortName">data_counter</obj_property>
    </wvobject>
 </wave_config>

@@ -50,7 +50,7 @@ entity parralel_to_serial is
 end parralel_to_serial;
 
 architecture Behavioral of parralel_to_serial is
-    type state is (idle, shiftOut);
+    type state is (idle, shiftOut, report_done);
     signal curr_state   : state;
     signal next_state   : state;
     
@@ -58,7 +58,7 @@ architecture Behavioral of parralel_to_serial is
     signal proceed_shift: std_logic;
     signal data_counter : integer := 0;
     signal data_load    : std_logic;
-    constant max_out_counter : integer := 2**OUT_BITS;
+    constant max_out_counter : integer := OUT_BITS;
 begin
 
 current_state_reset_process:
@@ -67,6 +67,7 @@ current_state_reset_process:
     if(rising_edge(clk_pmod)) then
         if(reset = '1') then
             curr_state <= idle;
+            data_shift <= ( others =>'0' );
         else
             curr_state <= next_state;
         end if;
@@ -74,16 +75,22 @@ current_state_reset_process:
     end process;
 
 output_signals_handler:
-process(curr_state)
+process(curr_state, clk_pmod)
 begin
+    done <= '0';
     if curr_state = idle then
-        done <= '1';
         data_counter <= 0;
         data_load <= '1';
         proceed_shift <= '0';
+    elsif curr_state = report_done then
+        done <= '1';
+        data_load <= '1';
+        proceed_shift <= '0';
     else
+        if(rising_edge(clk_pmod)) then
+            data_counter <= data_counter + 1;
+        end if;
         proceed_shift <= '1';
-        done <= '0';
         data_load <= '0';
     end if;
 end process;
@@ -106,8 +113,8 @@ begin
                 next_state <= shiftOut;
             end if;
         when shiftOut =>
-            if(data_counter = max_out_counter) then
-                next_state <= idle;
+            if(data_counter = max_out_counter - 1) then
+                next_state <= report_done;
             end if;
         when others =>
             next_state <= idle;
