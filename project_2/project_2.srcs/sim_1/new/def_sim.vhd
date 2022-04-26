@@ -48,6 +48,8 @@ architecture Behavioral of def_sim is
 	signal pmod_DA_in : std_logic :='0';
 	signal ready_out : std_logic :='0';
 	signal pmod_clk : std_logic :='0';
+	signal work_done: std_logic :='0';
+	signal start_shifting: std_logic := '0';
 begin
    UUT: entity work.sin_generator 
    generic map(LUT_SIZE,OUT_BITS,IN_BITS)
@@ -60,18 +62,26 @@ begin
     clk_pmod   => pmod_clk, -- clock for pmod outputing
     reset      => reset, -- sync reset
     data_in    => wave, -- data in vector
-    start      => pmod_clk, -- start transmitting data
+    start      => start_shifting, -- start transmitting data
     
     serial_out => pmod_DA_in, -- pmod serial output
     clk_out    => clk_out, -- clock out to pmod interface
-    done       => ena  -- signall indicating that data sending is done
+    done       => work_done  -- signall indicating that data sending is done
    );
+   clock_trigger_div : entity work.one_clock_trigger
+   port map(            
+        trg_clk => clock,
+        trigger => work_done,
+        reset   => reset,
+        out_trigger => ena,
+        not_out_trg => start_shifting);
    
 reset <= '1','0' after 200ps;
 clock    <= '1' after 100 ps when clock ='0' else
             '0' after 100 ps when clock ='1';
 pmod_clk <= '1' after 1200 ps when pmod_clk ='0' else
             '0' after 1200 ps when pmod_clk ='1';
+ena <= '0';
 --ena <=   '1' after 2300 ps when ena ='0' else
 --         '0' after 100 ps when ena ='1';
 
