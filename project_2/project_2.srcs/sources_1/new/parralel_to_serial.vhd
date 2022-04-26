@@ -67,7 +67,6 @@ current_state_reset_process:
     if(rising_edge(clk_pmod)) then
         if(reset = '1') then
             curr_state <= idle;
-            data_shift <= ( others =>'0' );
         else
             curr_state <= next_state;
         end if;
@@ -96,11 +95,18 @@ begin
 end process;
 
 data_load_process:
-process(data_load, clk)
+process(data_load, clk , clk_pmod)
 begin
     if(rising_edge(clk)) then
-        if(data_load ='1') then
+        if(reset = '1') then
+            data_shift <= ( others =>'0' );
+        elsif(data_load ='1') then
             data_shift <= data_in;
+        end if;
+    end if;
+    if(rising_edge(clk_pmod)) then
+        if(proceed_shift ='1') then
+            data_shift <= data_shift(OUT_BITS-2 downto 0)&'0';
         end if;
     end if;
 end process;
@@ -124,11 +130,7 @@ end process;
 serial_data_process:
 process(clk_pmod)
 begin
-    if(rising_edge(clk_pmod)) then
-        if(proceed_shift ='1') then
-            data_shift <= data_shift(OUT_BITS-2 downto 0)&'0';
-        end if;
-    end if;
+
 end process;
     serial_out <= data_shift(OUT_BITS-1);
     clk_out <= clk_pmod;

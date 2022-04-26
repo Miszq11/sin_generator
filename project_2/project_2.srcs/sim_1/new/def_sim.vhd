@@ -81,7 +81,7 @@ clock    <= '1' after 100 ps when clock ='0' else
             '0' after 100 ps when clock ='1';
 pmod_clk <= '1' after 1200 ps when pmod_clk ='0' else
             '0' after 1200 ps when pmod_clk ='1';
-ena <= '0';
+--ena <= '0';
 --ena <=   '1' after 2300 ps when ena ='0' else
 --         '0' after 100 ps when ena ='1';
 
