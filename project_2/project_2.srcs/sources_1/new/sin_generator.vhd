@@ -54,7 +54,7 @@ end component;
     signal lut_in       : std_logic_vector(IN_BITS-1 downto 0);
     signal lut_out      : std_logic_vector(OUT_BITS-1 downto 0);
     signal curr_state,next_state : sin_gen_state;
-    signal sin_index    : integer := 0;
+    signal sin_index    : integer := LUT_SIZE/2;
     signal ready_out    : std_logic;
 begin
 
@@ -90,7 +90,7 @@ inner_counter_process:
 process(clock, reset)
 begin
 if reset = '1' then
-    sin_index <= 0;
+    sin_index <= LUT_SIZE/2;
     ready_out <= '0';
 elsif rising_edge(clock) then
     ready_out <= '0';
