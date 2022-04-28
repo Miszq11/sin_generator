@@ -32,7 +32,10 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity serial_to_parralel is
---  Port ( );
+  generic(output_bits: integer := 12);
+  Port (
+        input, clk, rst, clk_pmod: std_logic;
+        output : std_logic_vector(output_bits -1 downto 0)  );
 end serial_to_parralel;
 
 architecture Behavioral of serial_to_parralel is
