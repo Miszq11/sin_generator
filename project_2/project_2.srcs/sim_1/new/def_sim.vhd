@@ -50,6 +50,8 @@ architecture Behavioral of def_sim is
 	signal pmod_clk : std_logic :='0';
 	signal work_done: std_logic :='0';
 	signal start_shifting: std_logic := '0';
+	signal received_sin_wave   : std_logic_vector(OUT_BITS -1 downto 0);
+	signal ADC_data_ready      : std_logic; 
 begin
    UUT: entity work.sin_generator 
    generic map(LUT_SIZE,OUT_BITS,IN_BITS)
@@ -68,6 +70,19 @@ begin
     clk_out    => clk_out, -- clock out to pmod interface
     done       => work_done  -- signall indicating that data sending is done
    );
+   
+      
+   SPI_MISO_controller: entity work.serial_to_parralel
+   generic map(output_bits => OUT_BITS)
+   port map(
+        input => pmod_DA_in,
+        clk => clock, 
+        rst => reset, 
+        clk_pmod => pmod_clk,
+        output => received_sin_wave,
+        data_ready => ADC_data_ready);
+   
+   
    clock_trigger_div : entity work.one_clock_trigger
    port map(            
         trg_clk => clock,
@@ -76,7 +91,7 @@ begin
         out_trigger => ena,
         not_out_trg => start_shifting);
    
-reset <= '1','0' after 200ps;
+reset <= '1','0' after 3600ps, '1' after 72 us, '0' after 73 us;
 clock    <= '1' after 100 ps when clock ='0' else
             '0' after 100 ps when clock ='1';
 pmod_clk <= '1' after 1200 ps when pmod_clk ='0' else

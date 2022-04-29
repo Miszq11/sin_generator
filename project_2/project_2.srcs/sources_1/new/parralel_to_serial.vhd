@@ -35,7 +35,8 @@ use IEEE.MATH_REAL.ALL;
 --use UNISIM.VComponents.all;
 
 entity parralel_to_serial is
-    generic( OUT_BITS : integer := 12);
+    generic( OUT_BITS : integer := 12;
+             FRAME_BITS : integer := 16);
     Port (
       clk       : in std_logic; -- system clock
       clk_pmod  : in std_logic; -- clock for pmod outputing
@@ -50,23 +51,26 @@ entity parralel_to_serial is
 end parralel_to_serial;
 
 architecture Behavioral of parralel_to_serial is
-    type state is (idle, shiftOut, report_done);
+    type state is (idle, shiftOut, report_done, reset_state);
     signal curr_state   : state;
     signal next_state   : state;
     
-    signal data_shift   : std_logic_vector(OUT_BITS-1 downto 0);
+    signal data_shift   : std_logic_vector(FRAME_BITS-1 downto 0);
     signal proceed_shift: std_logic;
     signal data_counter : integer := 0;
     signal data_load    : std_logic;
-    constant max_out_counter : integer := OUT_BITS;
+    constant max_out_counter : integer := FRAME_BITS-2;
 begin
-
+    assert (FRAME_BITS > OUT_BITS) report "FRAME_BITS must be higher than OUT_BITS" severity error; 
+    -- symulacyjne (niesyntezowalne, ale sprawdzane w czasie syntezy) sprawdzenie,
+    -- czy wielkoœæ ramki jest wiêksza od danych zapisywanych (powinno byæ wiêksze równe, ale tak...)
+    
 current_state_reset_process:
     process(reset,clk,clk_pmod)
     begin
     if(rising_edge(clk_pmod)) then
         if(reset = '1') then
-            curr_state <= idle;
+            curr_state <= reset_state;
         else
             curr_state <= next_state;
         end if;
@@ -101,15 +105,16 @@ begin
         if(reset = '1') then
             data_shift <= ( others =>'0' );
         elsif(data_load ='1') then
-            data_shift <= data_in;
+            data_shift <= (FRAME_BITS-1 downto OUT_BITS =>'0') & data_in;
         end if;
     end if;
     if(rising_edge(clk_pmod)) then
         if(proceed_shift ='1') then
-            data_shift <= data_shift(OUT_BITS-2 downto 0)&'0';
+            data_shift <= data_shift(FRAME_BITS-2 downto 0)&'0';
         end if;
     end if;
 end process;
+
 next_state_process:
 process(curr_state, start, data_counter)
 begin
@@ -122,6 +127,8 @@ begin
             if(data_counter = max_out_counter - 1) then
                 next_state <= report_done;
             end if;
+        when reset_state =>
+            next_state <= report_done;
         when others =>
             next_state <= idle;
     end case;
@@ -132,7 +139,8 @@ process(clk_pmod)
 begin
 
 end process;
-    serial_out <= data_shift(OUT_BITS-1);
+    serial_out <= data_shift(FRAME_BITS-3); 
+    -- bit histerezy do ominiêcia nieczu³oœci na sygna³ stanu IDLE
     clk_out <= clk_pmod;
 
 end Behavioral;

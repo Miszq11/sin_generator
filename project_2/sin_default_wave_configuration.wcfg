@@ -10,15 +10,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="20.833600 us"></ZoomEndTime>
-      <Cursor1Time time="0.034962 us"></Cursor1Time>
+      <ZoomStartTime time="23.300 ns"></ZoomStartTime>
+      <ZoomEndTime time="56.951 ns"></ZoomEndTime>
+      <Cursor1Time time="42.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="236"></NameColumnWidth>
-      <ValueColumnWidth column_width="115"></ValueColumnWidth>
+      <NameColumnWidth column_width="249"></NameColumnWidth>
+      <ValueColumnWidth column_width="109"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="18" />
+   <WVObjectSize size="23" />
    <wvobject fp_name="/def_sim/wave" type="array">
       <obj_property name="ElementShortName">wave[11:0]</obj_property>
       <obj_property name="ObjectShortName">wave[11:0]</obj_property>
@@ -29,10 +29,6 @@
    <wvobject fp_name="/def_sim/clock" type="logic">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
-   </wvobject>
-   <wvobject fp_name="/def_sim/UUT2/clk_pmod" type="logic">
-      <obj_property name="ElementShortName">clk_pmod</obj_property>
-      <obj_property name="ObjectShortName">clk_pmod</obj_property>
    </wvobject>
    <wvobject fp_name="/def_sim/clock_trigger_div/trigger" type="logic">
       <obj_property name="ElementShortName">trigger</obj_property>
@@ -54,13 +50,9 @@
       <obj_property name="ElementShortName">sin_index</obj_property>
       <obj_property name="ObjectShortName">sin_index</obj_property>
    </wvobject>
-   <wvobject fp_name="/def_sim/UUT2/data_in" type="array">
-      <obj_property name="ElementShortName">data_in[11:0]</obj_property>
-      <obj_property name="ObjectShortName">data_in[11:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/def_sim/UUT2/data_shift" type="array">
-      <obj_property name="ElementShortName">data_shift[11:0]</obj_property>
-      <obj_property name="ObjectShortName">data_shift[11:0]</obj_property>
+      <obj_property name="ElementShortName">data_shift[15:0]</obj_property>
+      <obj_property name="ObjectShortName">data_shift[15:0]</obj_property>
       <obj_property name="Radix">BINARYRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/def_sim/UUT2/data_counter" type="other">
@@ -79,10 +71,6 @@
       <obj_property name="ElementShortName">proceed_shift</obj_property>
       <obj_property name="ObjectShortName">proceed_shift</obj_property>
    </wvobject>
-   <wvobject fp_name="/def_sim/UUT2/data_load" type="logic">
-      <obj_property name="ElementShortName">data_load</obj_property>
-      <obj_property name="ObjectShortName">data_load</obj_property>
-   </wvobject>
    <wvobject fp_name="/def_sim/UUT2/done" type="logic">
       <obj_property name="ElementShortName">done</obj_property>
       <obj_property name="ObjectShortName">done</obj_property>
@@ -94,5 +82,39 @@
    <wvobject fp_name="/def_sim/UUT2/serial_out" type="logic">
       <obj_property name="ElementShortName">serial_out</obj_property>
       <obj_property name="ObjectShortName">serial_out</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/start" type="logic">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/clock_trigger_div/out_bit" type="logic">
+      <obj_property name="ElementShortName">out_bit</obj_property>
+      <obj_property name="ObjectShortName">out_bit</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/clock_trigger_div/out_trigger" type="logic">
+      <obj_property name="ElementShortName">out_trigger</obj_property>
+      <obj_property name="ObjectShortName">out_trigger</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/SPI_MISO_controller/output" type="array">
+      <obj_property name="ElementShortName">output[11:0]</obj_property>
+      <obj_property name="ObjectShortName">output[11:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/SPI_MISO_controller/data_counter" type="other">
+      <obj_property name="ElementShortName">data_counter</obj_property>
+      <obj_property name="ObjectShortName">data_counter</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/clk_pmod" type="logic">
+      <obj_property name="ElementShortName">clk_pmod</obj_property>
+      <obj_property name="ObjectShortName">clk_pmod</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/UUT2/data_load" type="logic">
+      <obj_property name="ElementShortName">data_load</obj_property>
+      <obj_property name="ObjectShortName">data_load</obj_property>
+   </wvobject>
+   <wvobject fp_name="/def_sim/SPI_MISO_controller/data_ready" type="logic">
+      <obj_property name="ElementShortName">data_ready</obj_property>
+      <obj_property name="ObjectShortName">data_ready</obj_property>
    </wvobject>
 </wave_config>

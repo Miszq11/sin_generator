@@ -117,6 +117,7 @@ end process;
 
 sin_lut : sin_lut_table
 port map(in_vec => lut_in , out_vec => lut_out); 
+
 wave <= lut_out;
 ready <= ready_out;
 
